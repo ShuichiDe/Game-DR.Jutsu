@@ -1,0 +1,42 @@
+﻿<Properties StartupConfiguration="{32C3BDE6-E125-3128-82C1-25D0441455A3}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scenes/Scripts/StartScreenManager.cs">
+    <Files>
+      <File FileName="Assets/Gamemanager.cs" Line="20" Column="10" />
+      <File FileName="Assets/Scenes/Scripts/Enemies.cs" />
+      <File FileName="Assets/Scenes/Scripts/GameManager.cs" Line="53" Column="6" />
+      <File FileName="Assets/Scenes/Scripts/GameStartTrigger.cs" />
+      <File FileName="Assets/Scenes/Scripts/Parallax.cs" />
+      <File FileName="Assets/Scenes/Scripts/Player.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scenes/Scripts/QuizManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scenes/Scripts/QuizQuestion.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scenes/Scripts/Spawner.cs" />
+      <File FileName="Assets/Scenes/Scripts/StartScreenManager.cs" Line="63" Column="6" />
+      <File FileName="Assets/8Bit Music - 062022/Notes.txt" />
+      <File FileName="Assets/GameController.cs" />
+      <File FileName="Assets/Scenes/Scripts/AudioManager.cs" Line="44" Column="23" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="My project" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="8Bit Music - 062022" expanded="True" />
+              <Node name="Scenes" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="StartScreenManager.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="0eb290b7-2d58-42ad-a158-c81d5e3b7afc" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
