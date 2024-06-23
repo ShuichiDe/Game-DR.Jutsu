@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "D:\\PRU_Team_Git\\Myproject\\My project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|D:\\PRU_Team_Git\\Myproject\\My project\\assets\\scenes\\scripts\\quizmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scenes\\scripts\\quizmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|d:\\pru_team_git\\myproject\\my project\\assets\\scenes\\scripts\\sceneswitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scenes\\scripts\\sceneswitcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|d:\\pru_team_git\\myproject\\my project\\assets\\scenes\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scenes\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|D:\\PRU_Team_Git\\Myproject\\My project\\assets\\scenes\\scripts\\quizmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scenes\\scripts\\quizmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|D:\\PRU_Team_Git\\Myproject\\My project\\assets\\scenes\\scripts\\triviamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -66,11 +70,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 33,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\Player.cs",
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\Player.cs",
@@ -83,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Spawner.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\Spawner.cs",
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\Spawner.cs",
@@ -93,6 +97,19 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-25T04:31:52.016Z",
               "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SceneSwitcher.cs",
+              "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\SceneSwitcher.cs",
+              "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\SceneSwitcher.cs",
+              "ToolTip": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\SceneSwitcher.cs",
+              "RelativeToolTip": "Assets\\Scenes\\Scripts\\SceneSwitcher.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-23T12:38:12.669Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -200,7 +217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "TriviaManager.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\TriviaManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\TriviaManager.cs",
@@ -208,12 +225,11 @@
               "RelativeToolTip": "Assets\\Scenes\\Scripts\\TriviaManager.cs",
               "ViewState": "AQIAAFUAAAAAAAAAAAAYwHIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T07:03:09.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-22T07:03:09.541Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "SettingManager.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\SettingManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\SettingManager.cs",
@@ -225,7 +241,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AudioManager.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\AudioManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\AudioManager.cs",
@@ -237,7 +253,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "QuizQuestion.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\QuizQuestion.cs",
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\QuizQuestion.cs",
@@ -255,14 +271,14 @@
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\GameManager.cs",
               "ToolTip": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\GameManager.cs",
               "RelativeToolTip": "Assets\\Scenes\\Scripts\\GameManager.cs",
-              "ViewState": "AQIAAE0AAAAAAAAAAAAYwGgAAAAZAAAA",
+              "ViewState": "AQIAACIAAAAAAAAAAAA4wGgAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-25T07:51:50.649Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "QuizManager.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\QuizManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\QuizManager.cs",
@@ -270,12 +286,11 @@
               "RelativeToolTip": "Assets\\Scenes\\Scripts\\QuizManager.cs",
               "ViewState": "AQIAAK0AAAAAAAAAAAAuwMUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T04:53:11.473Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T04:53:11.473Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Parallax.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\Parallax.cs",
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\Parallax.cs",
@@ -287,7 +302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Enemies.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\Enemies.cs",
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\Enemies.cs",
@@ -299,7 +314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "GameStartTrigger.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\GameStartTrigger.cs",
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\GameStartTrigger.cs",
@@ -311,7 +326,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "StartScreenManager.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Scenes\\Scripts\\StartScreenManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scenes\\Scripts\\StartScreenManager.cs",
@@ -323,7 +338,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "GameController.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\GameController.cs",
               "RelativeDocumentMoniker": "Assets\\GameController.cs",
@@ -335,7 +350,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "Gamemanager.cs",
               "DocumentMoniker": "D:\\PRU_Team_Git\\Myproject\\My project\\Assets\\Gamemanager.cs",
               "RelativeDocumentMoniker": "Assets\\Gamemanager.cs",
