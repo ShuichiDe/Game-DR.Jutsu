@@ -2,10 +2,11 @@
 using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 
 public class TriviaManager : MonoBehaviour
 {
-    private const string triviaApiUrl = "https://opentdb.com/api.php?amount=50&difficulty=easy&type=boolean";
+    private const string baseTriviaApiUrl = "https://opentdb.com/api.php?amount=50&difficulty={0}&type=boolean";
     private List<Question> triviaQuestions = new List<Question>();
     private const int MaxRetryAttempts = 2;
     private const float RetryDelaySeconds = 3f;
@@ -45,8 +46,7 @@ public class TriviaManager : MonoBehaviour
     }
 
     void Start()
-    {
-        // Check the cache before making an API call
+    { // Check the cache before making an API call
         if (cachedTriviaQuestions.Count > 0)
         {
             triviaQuestions = new List<Question>(cachedTriviaQuestions);
@@ -54,13 +54,44 @@ public class TriviaManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(GetTriviaQuestions());
+            StartCoroutine(GetTriviaQuestions("easy")); // Default to easy if no difficulty is set
+        }
+
+        // Check if the list is empty and refetch questions if necessary
+        CheckAndRefetchQuestionsIfEmpty("easy");
+    }
+    public void GetRandomQuestion()
+    {
+        if (triviaQuestions.Count > 0)
+        {
+            // Sinh ra một số ngẫu nhiên từ 0 đến triviaQuestions.Count - 1
+            int randomIndex = UnityEngine.Random.Range(0, triviaQuestions.Count);
+
+            // Lấy câu hỏi tại chỉ số ngẫu nhiên
+            Question randomQuestion = triviaQuestions[randomIndex];
+
+            // In câu hỏi ra để kiểm tra (có thể không cần in trong ứng dụng thực tế)
+            Debug.Log("Random Question: " + randomQuestion.questionText);
+        }
+        else
+        {
+            Debug.LogWarning("Trivia questions list is empty. Cannot get random question.");
         }
     }
 
-    public IEnumerator GetTriviaQuestions()
+    public void SetDifficulty(string difficulty)
     {
+        StartCoroutine(GetTriviaQuestions(difficulty));
+
+        // Check if the list is empty and refetch questions if necessary
+        CheckAndRefetchQuestionsIfEmpty(difficulty);
+    }
+
+    public IEnumerator GetTriviaQuestions(string difficulty)
+    {
+        string triviaApiUrl = string.Format(baseTriviaApiUrl, difficulty);
         int retryCount = 0;
+        float delay = RetryDelaySeconds;
 
         while (retryCount < MaxRetryAttempts)
         {
@@ -70,10 +101,17 @@ public class TriviaManager : MonoBehaviour
 
                 if (webRequest.result != UnityWebRequest.Result.Success)
                 {
-                    Debug.LogError("Failed to get trivia questions: " + webRequest.error);
-
-                    // Wait before retrying
-                    yield return new WaitForSeconds(RetryDelaySeconds);
+                    if (webRequest.responseCode == 429) // Kiểm tra mã lỗi 429
+                    {
+                        Debug.LogWarning("Rate limit exceeded. Retrying after delay: " + delay);
+                        yield return new WaitForSeconds(delay);
+                        delay *= 2; // Tăng thời gian chờ theo cấp số nhân
+                    }
+                    else
+                    {
+                        Debug.LogError("Failed to get trivia questions: " + webRequest.error);
+                        yield return new WaitForSeconds(RetryDelaySeconds);
+                    }
                     retryCount++;
                 }
                 else
@@ -100,20 +138,21 @@ public class TriviaManager : MonoBehaviour
                 return;
             }
 
-            triviaQuestions.Clear(); // Clear previous questions if any
-            cachedTriviaQuestions.Clear(); // Clear the cache
+            triviaQuestions.Clear();
+            cachedTriviaQuestions.Clear();
 
             foreach (var result in response.results)
             {
                 Question newQuestion = new Question();
-                newQuestion.questionText = result.question;
+                newQuestion.questionText = WebUtility.HtmlDecode(result.question); // Giải mã các ký tự HTML
                 newQuestion.isTrue = (result.correct_answer.ToLower() == "true");
 
                 triviaQuestions.Add(newQuestion);
-                cachedTriviaQuestions.Add(newQuestion); // Cache the question
+                cachedTriviaQuestions.Add(newQuestion);
             }
 
             Debug.Log("Successfully loaded " + triviaQuestions.Count + " trivia questions.");
+            CheckAndRefetchQuestionsIfEmpty("easy");
         }
         catch (System.Exception e)
         {
@@ -121,6 +160,25 @@ public class TriviaManager : MonoBehaviour
         }
     }
 
+    void CheckAndRefetchQuestionsIfEmpty(string difficulty)
+    {
+        if (triviaQuestions.Count == 0)
+        {
+            Debug.LogWarning("Trivia questions list is empty. Refetching...");
+            StartCoroutine(GetTriviaQuestions(difficulty));
+        }
+    }
+    public void ClearTriviaQuestions()
+    {
+        triviaQuestions.Clear();
+        cachedTriviaQuestions.Clear();
+        Debug.Log("Trivia questions have been cleared.");
+    }
+    public void RefreshTriviaQuestions(string difficulty)
+    {
+        ClearTriviaQuestions();
+        StartCoroutine(GetTriviaQuestions(difficulty));
+    }
     [System.Serializable]
     public class TriviaResponse
     {

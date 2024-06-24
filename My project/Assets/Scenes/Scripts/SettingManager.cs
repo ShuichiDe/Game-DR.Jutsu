@@ -25,7 +25,9 @@ public class SettingManager : MonoBehaviour
     }
 
     public void GoHome()
-    {  
+    {
+        ResetTriviaQuestions();
+        ResetGameState();
         SceneManager.LoadScene("StartGameScene");
     }
 
@@ -33,5 +35,31 @@ public class SettingManager : MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
+    }
+
+    private void ResetTriviaQuestions()
+    {
+        TriviaManager triviaManager = TriviaManager.Instance;
+        if (triviaManager != null)
+        {
+            triviaManager.ClearTriviaQuestions();
+        }
+        else
+        {
+            Debug.LogError("TriviaManager is not found in the scene.");
+        }
+    }
+
+    private void ResetGameState()
+    {
+        GameManager gameManager = GameManager.Instance;
+        if (gameManager != null)
+        {
+            gameManager.ResetState();
+        }
+        else
+        {
+            Debug.LogError("GameManager is not found in the scene.");
+        }
     }
 }

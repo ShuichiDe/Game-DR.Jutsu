@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,6 +14,10 @@ public class StartScreenManager : MonoBehaviour
     public TMP_Text welcomeText;
     public Button volumeButton; // Thêm nút âm lượng
     public AudioSource audioSource; // Thêm AudioSource để quản lý âm thanh
+    public GameObject difficultyPanel; // Thêm biến công khai cho difficultyPanel
+    public Button easyButton;
+    public Button mediumButton;
+    public Button hardButton;
 
     private bool isMuted = false; // Biến lưu trạng thái âm thanh
 
@@ -32,7 +37,7 @@ public class StartScreenManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (startPanel == null || startButton == null || welcomeText == null)
+        if (startPanel == null || startButton == null || welcomeText == null || difficultyPanel == null || easyButton == null || mediumButton == null || hardButton == null)
         {
             Debug.LogError("Some UI components are not assigned in StartScreenManager.");
             return;
@@ -40,6 +45,27 @@ public class StartScreenManager : MonoBehaviour
         ShowStartScreen();
         startButton.onClick.AddListener(OnStartButtonClicked);
         volumeButton.onClick.AddListener(OnVolumeButtonClicked);
+        easyButton.onClick.AddListener(() => OnDifficultySelected("easy"));
+        mediumButton.onClick.AddListener(() => OnDifficultySelected("medium"));
+        hardButton.onClick.AddListener(() => OnDifficultySelected("hard"));
+    }
+
+    private void OnStartButtonClicked()
+    {
+        startButton.gameObject.SetActive(false); // Ẩn panel bắt đầu
+        ShowDifficultySelection();   // Hiển thị panel chọn độ khó
+    }
+
+    private void OnDifficultySelected(string difficulty)
+    {
+        difficultyPanel.SetActive(false);
+        GameManager.Instance.StartGame(difficulty);
+        SceneSwitcher.Instance.SwitchScene("SampleScene");
+    }
+
+    private void ShowDifficultySelection()
+    {
+        difficultyPanel.SetActive(true); // Hiển thị panel chọn độ khó
     }
 
     public void ShowStartScreen()
@@ -47,11 +73,6 @@ public class StartScreenManager : MonoBehaviour
         startPanel.SetActive(true);
     }
 
-    private void OnStartButtonClicked()
-    {
-        startPanel.SetActive(false); // Ẩn panel bắt đầu khi nút bắt đầu được nhấn
-        GameManager.Instance.StartGame();
-    }
     private void OnVolumeButtonClicked()
     {
         isMuted = !isMuted; // Chuyển đổi trạng thái âm thanh
@@ -62,6 +83,6 @@ public class StartScreenManager : MonoBehaviour
     private void UpdateVolumeButtonText()
     {
         // Cập nhật văn bản trên nút âm lượng (nếu có)
-        volumeButton.GetComponentInChildren<TMP_Text>().text = isMuted ? "" : "";
+        volumeButton.GetComponentInChildren<TMP_Text>().text = isMuted ? "Unmute" : "Mute";
     }
 }

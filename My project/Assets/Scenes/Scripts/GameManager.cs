@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         {
             quizManager = FindObjectOfType<QuizManager>();
             triviaManager = FindObjectOfType<TriviaManager>();
+            triviaManager = TriviaManager.Instance;
 
             if (quizManager == null)
             {
@@ -53,11 +54,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void StartGame(string difficulty)
     {
-        StartCoroutine(LoadTriviaQuestionsAndStart());
-    }
+        Debug.Log("Game started with difficulty: " + difficulty);
 
+        if (TriviaManager.Instance == null)
+        {
+            Debug.LogError("TriviaManager.Instance is not initialized!");
+            return;
+        }
+
+        TriviaManager.Instance.SetDifficulty(difficulty);
+
+        // Make sure SceneSwitcher.Instance is properly implemented and accessible
+        if (SceneSwitcher.Instance != null)
+        {
+            SceneSwitcher.Instance.SwitchScene("SampleScene");
+        }
+        else
+        {
+            Debug.LogError("SceneSwitcher.Instance is not initialized!");
+        }
+    }
+    /*
     private IEnumerator LoadTriviaQuestionsAndStart()
     {
         if (triviaManager == null)
@@ -82,6 +101,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("QuizManager is not assigned in GameManager!");
         }
     }
+    */
 
     public void Question(Player player, Enemies enemy)
     {
@@ -124,5 +144,10 @@ public class GameManager : MonoBehaviour
     public void AddScore(int points)
     {
         score += points;
+    }
+    public void ResetState()
+    {
+        score = 0;
+        Debug.Log("Game state has been reset.");
     }
 }

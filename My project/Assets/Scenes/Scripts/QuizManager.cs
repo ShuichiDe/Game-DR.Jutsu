@@ -36,6 +36,7 @@ public class QuizManager : MonoBehaviour
     public Button restartButton;
     public GameObject smokePrefab;
     public TMP_Text scoreTextFinal;
+    public GameObject newBackground;
 
     private List<TriviaManager.Question> triviaQuestions = new List<TriviaManager.Question>();
 
@@ -61,6 +62,11 @@ public class QuizManager : MonoBehaviour
 
         // Ensure we have the latest trivia questions
         FetchTriviaQuestions();
+        _gameManager = GameManager.Instance;
+        if (_gameManager == null)
+        {
+            Debug.LogError("GameManager.Instance is not initialized or GameManager is not found in the scene.");
+        }
     }
 
     private void FetchTriviaQuestions()
@@ -114,7 +120,7 @@ public class QuizManager : MonoBehaviour
 
         playerScript = player;
         enemyScript = enemy;
-
+        
         playerScript.StopMovement();
         enemyScript.StopMovement();
 
@@ -159,6 +165,10 @@ public class QuizManager : MonoBehaviour
             questionPanel.SetActive(false);
             scoreText.text = "Score: " + _gameManager.score;
             scoreText.gameObject.SetActive(true);
+            if (_gameManager.score == 5)
+            {
+                ChangeBackground();
+            }
         }
         else
         {
@@ -191,9 +201,30 @@ public class QuizManager : MonoBehaviour
 
     private void RestartGame()
     {
-        //_gameManager.re
-        triviaQuestions.Clear();
-        _gameManager.RestartGame();
+        if (_gameManager != null)
+        {
+            _gameManager.ResetState();
+            _gameManager.RestartGame();
+
+            scoreText.text = "Score: " + _gameManager.score;
+            scoreTextFinal.text = "Total: " + _gameManager.score;
+        }
+        else
+        {
+            Debug.LogError("_gameManager is not initialized!");
+        }
+    }
+    private void ChangeBackground()
+    {
+        if (newBackground != null)
+        {
+            GameObject currentBackground = GameObject.Find("Background");
+            if (currentBackground != null)
+            {
+                currentBackground.SetActive(false);
+            }
+            newBackground.SetActive(true);
+        }
     }
 
     private void HideEnemy()
