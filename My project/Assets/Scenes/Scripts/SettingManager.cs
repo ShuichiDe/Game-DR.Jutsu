@@ -33,6 +33,18 @@ public class SettingManager : MonoBehaviour
 
     public void ResetGame()
     {
+        QuizManager quizManager = QuizManager.Instance;
+        if (quizManager != null)
+        {
+            quizManager.ResetScore();
+            quizManager.FetchTriviaQuestions();
+            quizManager.ShuffleQuestions();
+        }
+        else
+        {
+            Debug.LogError("QuizManager is not found in the scene.");
+        }
+
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }

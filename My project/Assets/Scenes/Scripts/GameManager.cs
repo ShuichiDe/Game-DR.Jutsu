@@ -139,6 +139,16 @@ public class GameManager : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
+
+        // Shuffle the questions when restarting the game
+        if (quizManager != null)
+        {
+            quizManager.ShuffleQuestions();
+        }
+        else
+        {
+            Debug.LogError("QuizManager is not initialized!");
+        }
     }
 
     public void AddScore(int points)

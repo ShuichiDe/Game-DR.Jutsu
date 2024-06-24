@@ -60,6 +60,7 @@ public class TriviaManager : MonoBehaviour
         // Check if the list is empty and refetch questions if necessary
         CheckAndRefetchQuestionsIfEmpty("easy");
     }
+    /*
     public void GetRandomQuestion()
     {
         if (triviaQuestions.Count > 0)
@@ -78,15 +79,7 @@ public class TriviaManager : MonoBehaviour
             Debug.LogWarning("Trivia questions list is empty. Cannot get random question.");
         }
     }
-
-    public void SetDifficulty(string difficulty)
-    {
-        StartCoroutine(GetTriviaQuestions(difficulty));
-
-        // Check if the list is empty and refetch questions if necessary
-        CheckAndRefetchQuestionsIfEmpty(difficulty);
-    }
-
+    */
     public IEnumerator GetTriviaQuestions(string difficulty)
     {
         string triviaApiUrl = string.Format(baseTriviaApiUrl, difficulty);
@@ -101,11 +94,11 @@ public class TriviaManager : MonoBehaviour
 
                 if (webRequest.result != UnityWebRequest.Result.Success)
                 {
-                    if (webRequest.responseCode == 429) // Kiểm tra mã lỗi 429
+                    if (webRequest.responseCode == 429)
                     {
                         Debug.LogWarning("Rate limit exceeded. Retrying after delay: " + delay);
                         yield return new WaitForSeconds(delay);
-                        delay *= 2; // Tăng thời gian chờ theo cấp số nhân
+                        delay *= 2;
                     }
                     else
                     {
@@ -118,12 +111,19 @@ public class TriviaManager : MonoBehaviour
                 {
                     string json = webRequest.downloadHandler.text;
                     ProcessTriviaJson(json);
-                    yield break; // Exit coroutine on success
+                    yield break;
                 }
             }
         }
-
         Debug.LogError("Max retry attempts reached. Unable to fetch trivia questions.");
+    }
+
+    public void SetDifficulty(string difficulty)
+    {
+        StartCoroutine(GetTriviaQuestions(difficulty));
+
+        // Check if the list is empty and refetch questions if necessary
+        CheckAndRefetchQuestionsIfEmpty(difficulty);
     }
 
     void ProcessTriviaJson(string json)
@@ -168,17 +168,20 @@ public class TriviaManager : MonoBehaviour
             StartCoroutine(GetTriviaQuestions(difficulty));
         }
     }
+    
     public void ClearTriviaQuestions()
     {
         triviaQuestions.Clear();
         cachedTriviaQuestions.Clear();
         Debug.Log("Trivia questions have been cleared.");
     }
+    /*
     public void RefreshTriviaQuestions(string difficulty)
     {
         ClearTriviaQuestions();
         StartCoroutine(GetTriviaQuestions(difficulty));
     }
+    */
     [System.Serializable]
     public class TriviaResponse
     {

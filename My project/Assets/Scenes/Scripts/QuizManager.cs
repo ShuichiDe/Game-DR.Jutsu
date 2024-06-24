@@ -69,13 +69,14 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    private void FetchTriviaQuestions()
+    public void FetchTriviaQuestions()
     {
         TriviaManager triviaManager = TriviaManager.Instance as TriviaManager;
 
         if (triviaManager != null)
         {
             triviaQuestions = triviaManager.TriviaQuestions;
+            ShuffleQuestions();
         }
         else
         {
@@ -165,7 +166,7 @@ public class QuizManager : MonoBehaviour
             questionPanel.SetActive(false);
             scoreText.text = "Score: " + _gameManager.score;
             scoreText.gameObject.SetActive(true);
-            if (_gameManager.score == 5)
+            if (_gameManager.score == 1)
             {
                 ChangeBackground();
             }
@@ -205,13 +206,45 @@ public class QuizManager : MonoBehaviour
         {
             _gameManager.ResetState();
             _gameManager.RestartGame();
+            _gameManager.score = 0;
 
             scoreText.text = "Score: " + _gameManager.score;
             scoreTextFinal.text = "Total: " + _gameManager.score;
+
+            FetchTriviaQuestions();
+            ShuffleQuestions();
+
+            // Kiểm tra và gọi DisplayQuestion chỉ khi các đối tượng được gán
+            if (playerScript != null && enemyScript != null)
+            {
+                DisplayQuestion(playerScript, enemyScript);
+            }
+            else
+            {
+                Debug.LogError("playerScript or enemyScript is null. Cannot display question.");
+            }
+
+            if (triviaQuestions.Count > 0)
+            {
+                DisplayQuestion(playerScript, enemyScript);
+            }
+            else
+            {
+                Debug.LogWarning("No questions available after shuffle.");
+            }
         }
         else
         {
             Debug.LogError("_gameManager is not initialized!");
+        }
+    }
+    public void ResetScore()
+    {
+        if (_gameManager != null)
+        {
+            _gameManager.score = 0;
+            scoreText.text = "Score: " + _gameManager.score;
+            scoreTextFinal.text = "Total: " + _gameManager.score;
         }
     }
     private void ChangeBackground()
@@ -224,6 +257,16 @@ public class QuizManager : MonoBehaviour
                 currentBackground.SetActive(false);
             }
             newBackground.SetActive(true);
+        }
+    }
+    public void ShuffleQuestions()
+    {
+        for (int i = 0; i < triviaQuestions.Count; i++)
+        {
+            TriviaManager.Question temp = triviaQuestions[i];
+            int randomIndex = Random.Range(i, triviaQuestions.Count);
+            triviaQuestions[i] = triviaQuestions[randomIndex];
+            triviaQuestions[randomIndex] = temp;
         }
     }
 
