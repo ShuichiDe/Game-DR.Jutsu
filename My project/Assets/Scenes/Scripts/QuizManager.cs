@@ -36,7 +36,7 @@ public class QuizManager : MonoBehaviour
     public Button restartButton;
     public GameObject smokePrefab;
     public TMP_Text scoreTextFinal;
-    public GameObject newBackground;
+    public Material newBackgroundMaterial;
 
     private List<TriviaManager.Question> triviaQuestions = new List<TriviaManager.Question>();
 
@@ -166,10 +166,6 @@ public class QuizManager : MonoBehaviour
             questionPanel.SetActive(false);
             scoreText.text = "Score: " + _gameManager.score;
             scoreText.gameObject.SetActive(true);
-            if (_gameManager.score == 1)
-            {
-                ChangeBackground();
-            }
         }
         else
         {
@@ -199,7 +195,30 @@ public class QuizManager : MonoBehaviour
             Debug.Log($"Questions remaining: {triviaQuestions.Count}");
         }
     }
-
+    /*
+    private void ChangeBackgroundMaterial()
+    {
+        // Find the current background GameObject
+        GameObject currentBackground = GameObject.Find("Background");
+        if (currentBackground != null)
+        {
+            MeshRenderer renderer = currentBackground.GetComponent<MeshRenderer>();
+            if (renderer != null && renderer.materials.Length > 1)
+            {
+                // Change the material to the new material
+                renderer.material = newBackgroundMaterial;
+            }
+            else
+            {
+                Debug.LogError("MeshRenderer does not have enough materials or is null.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Current background GameObject not found.");
+        }
+    }
+    */
     private void RestartGame()
     {
         if (_gameManager != null)
@@ -247,6 +266,7 @@ public class QuizManager : MonoBehaviour
             scoreTextFinal.text = "Total: " + _gameManager.score;
         }
     }
+    /*
     private void ChangeBackground()
     {
         if (newBackground != null)
@@ -259,6 +279,7 @@ public class QuizManager : MonoBehaviour
             newBackground.SetActive(true);
         }
     }
+    */
     public void ShuffleQuestions()
     {
         for (int i = 0; i < triviaQuestions.Count; i++)
